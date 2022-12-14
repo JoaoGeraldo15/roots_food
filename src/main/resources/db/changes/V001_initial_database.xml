@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.2.xsd
+      http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.2.xsd">
+
+    <changeSet id="202204160854-0" author="joao.geraldo">
+        <createTable tableName="STATUS_ATIVO">
+            <column name="ID" type="INT" autoIncrement="true" remarks="Chave primária da tabela.">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="DESCRICAO" type="VARCHAR(255)" remarks="Descrição do status">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="202204160854-1" author="joao.geraldo">
+        <createTable tableName="STATUS_PEDIDO">
+            <column name="ID" type="INT" autoIncrement="true" remarks="Chave primária da tabela.">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+
+            <column name="DESCRICAO" type="VARCHAR(60)" remarks="status do pedido.">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="202204160854-2" author="joao.geraldo">
+        <createTable tableName="COZINHA">
+            <column name="ID" type="INT" autoIncrement="true" remarks="Chave primária da tabela">
+                <constraints nullable="false" primaryKey="true" />
+            </column>
+
+            <column name="nome" type="VARCHAR(35)" remarks="Nome do pais no qual a cozinha representa (comida brasileira, italiana, etc...)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="202204160854-3" author="joao.geraldo">
+        <createTable tableName="FORMA_PAGAMENTO">
+            <column name="ID" type="INT" autoIncrement="true" remarks="Chave primária da tabela.">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="descricao" type="VARCHAR(50)" remarks="Formas de pagamento que o restaurante aceita.">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="202204160854-4" author="joao.geraldo">
+        <createTable tableName="ESTADO">
+            <column name="ID" type="INT" autoIncrement="true" remarks="Chave primária da tabela.">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="NOME" type="VARCHAR(255)" remarks="">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="202204160854-5" author="joao.geraldo">
+
+        <createTable tableName="CIDADE">
+            <column name="ID" type="INT" autoIncrement="true" remarks="Chave primária da tabela.">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="NOME" type="VARCHAR(255)" remarks="">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ID_ESTADO" type="INT" remarks="Chave estrangeira da tabela ESTADO">
+                <constraints nullable="false" foreignKeyName="ESTADO_CIDADE_FK" references="ESTADO(ID)"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="202204160854-6" author="joao.geraldo">
+        <createTable tableName="ENDERECO">
+            <column name="ID" type="INT" autoIncrement="true" remarks="Chave primária da tabela.">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+
+            <column name="CEP" type="VARCHAR(10)" remarks="">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LOGRADOURO" type="VARCHAR(255)" remarks="">
+                <constraints nullable="false"/>
+            </column>
+            <column name="NUMERO" type="INT" remarks="">
+                <constraints nullable="false"/>
+            </column>
+            <column name="COMPLEMENTO" type="VARCHAR(355)" remarks="">
+                <constraints nullable="false"/>
+            </column>
+            <column name="BAIRRO" type="VARCHAR(255)" remarks="">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ID_CIDADE" type="INT" remarks="Chanve estrangeira da tabela CIDADE">
+                <constraints nullable="false" foreignKeyName="CIDADE_ENDERECO_FK" references="CIDADE(ID)"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="202204160854-7" author="joao.geraldo">
+        <createTable tableName="RESTAURANTE">
+            <column name="ID" type="INT" autoIncrement="true" remarks="Chave primária da tabela.">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="NOME" type="VARCHAR(128)" remarks="Nome do restaurante.">
+                <constraints nullable="false"/>
+            </column>
+            <column name="TAXA_ENTREGA" type="VARCHAR(128)" remarks="Taxa de entrega do restaurante.">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ID_STATUS_ATIVO" type="INT" remarks="Status para inidicar se restaurante está ativo na loja.">
+                <constraints nullable="false" foreignKeyName="STATUS_RESTAURANTE_FK" references="STATUS_ATIVO(ID)"/>
+            </column>
+            <column name="DATA_REGISTRO" type="VARCHAR(128)" remarks="Data que o restaurante foi registrado.">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DATA_ATUALIZACAO" type="VARCHAR(128)" remarks="Data de mudança de dados."> </column>
+            <column name="ID_ENDERECO" type="INT" remarks="Chave estrangeira para cadastro de endereço.">
+                <constraints nullable="false" foreignKeyName="ENDERECO_RESTAURANTE_FK" references="ENDERECO(ID)"/>
+            </column>
+            <column name="ID_COZINHA" type="INT" remarks="Chave estrangeira da cozinha.">
+                <constraints nullable="false" foreignKeyName="COZINHA_RESTAURANTE_FK" references="COZINHA(ID)"/>
+            </column>
+            <column name="ID_FORMA_PAGAMENTO" type="INT" remarks="Chave estrangeira para forma de pagamento.">
+                <constraints nullable="false" foreignKeyName="FORMA_PAGAMENTO_RESTAURANTE_FK" references="FORMA_PAGAMENTO(ID)"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <!--  DOMINIO RELACIONADO AO PRODUTO  -->
+    <changeSet id="202204160854-8" author="joao.geraldo">
+        <createTable tableName="PRODUTO">
+            <column name="ID" type="INT" autoIncrement="true" remarks="Chave primária da tabela.">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="NOME" type="VARCHAR(120)" remarks="Nome do produto.">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DESCRICAO" type="VARCHAR(255)" remarks="Informações sobre o produto.">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PRECO" type="DECIMAL" remarks="Preço cobrado pelo produto.">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ID_STATUS_ATIVO" type="INT" remarks="Informação sobre se o produto é ativo ou não.">
+                <constraints nullable="false" foreignKeyName="STATUS_ATIVO_PRODUTO_FK" references="STATUS_ATIVO(ID)"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="202204160854-9" author="joao.geraldo">
+        <createTable tableName="FOTO_PRODUTO" remarks="Armazena as fotos do produto." >
+            <column name="ID" remarks="Chave primária da tabela" type="INT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="ID_PRODUTO" type="INT" remarks="Chave estrangeira do produto.">
+                <constraints nullable="false" foreignKeyName="ID_PRODUTO_FK" references="PRODUTO(ID)"/>
+            </column>
+            <column name="NOME" remarks="Nome do arquivo anexado." type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DESCRICAO" type="VARCHAR(255)" remarks="Descrição da foto do produto">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ARQUIVO" remarks="Arquivo anexado em base64." type="BLOB">
+                <constraints nullable="false"/>
+            </column>
+            <column name="TAMANHO_ARQUIVO" remarks="Tamanho do arquivo em KB." type="NUMBER">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="202204160854-10" author="joao.geraldo">
+        <createTable tableName="PEDIDO">
+            <column name="ID" type="INT" autoIncrement="true" remarks="Chave primária da tabela.">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="SUBTOTAL" type="DECIMAL" remarks="">
+                <constraints nullable="false"/>
+            </column>
+            <column name="TAXA_FRETE" type="DECIMAL" remarks="">
+                <constraints nullable="false"/>
+            </column>
+            <column name="VALOR_TOTAL" type="DECIMAL" remarks="">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DATA_PEDIDO" type="DATETIME" remarks="">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ID_STATUS_PEDIDO" type="INT" remarks="">
+                <constraints nullable="false" foreignKeyName="STATUS_PEDIDO_FK" references="STATUS_PEDIDO(ID)"/>
+            </column>
+            <column name="ID_FORMA_PAGAMENTO" type="INT" remarks="Chave estrangeira para forma de pagamento.">
+                <constraints nullable="false" foreignKeyName="FORMA_PAGAMENTO_PEDIDO_FK" references="FORMA_PAGAMENTO(ID)"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="202204160854-11" author="joao.geraldo">
+        <createTable tableName="HISTORICO_PEDIDO">
+            <column name="ID" type="INT" autoIncrement="true" remarks="Chave primária da tabela.">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="ID_PEDIDO" type="INT" remarks="Chave estrangeira que representa a tabela PEDIDO">
+                <constraints nullable="false" foreignKeyName="PEDIDO_HISTORICO_FK" references="PEDIDO(ID)"/>
+            </column>
+            <column name="ID_STATUS_PEDIDO" type="INT" remarks="Status do pedido no historico">
+                <constraints nullable="false" foreignKeyName="STATUS_PEDIDO_HISTORICO_FK" references="STATUS_PEDIDO(ID)"/>
+            </column>
+            <column name="DATA_OCORRENCIA" type="DATETIME" remarks="Data que ocorreu a mudança para esse status">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="202204160854-12" author="joao.geraldo">
+        <createTable tableName="ITEM_PEDIDO">
+            <column name="ID" type="int" autoIncrement="true" remarks="Chave primária da tabela.">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="ID_PEDIDO" type="INT" remarks="Chave estrangeira da tabela PEDIDO.">
+                <constraints nullable="false" foreignKeyName="PEDIDO_ITEM_FK" references="PEDIDO(ID)"/>
+            </column>
+            <column name="ID_PRODUTO" type="INT" remarks="Chave estrangeira da tabela PRODUTO.">
+                <constraints nullable="false" foreignKeyName="PRODUTO_ITEM_PEDIDO_FK" references="PRODUTO(ID)"/>
+            </column>
+            <column name="QUANTIDADE" type="INT" remarks="">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PRECO_UNITARIO" type="DECIMAL" remarks="">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PRECO_TOTAL" type="DECIMAL" remarks="">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OBSERVACAO" type="VARCHAR(255)" remarks="">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="202204160854-15" author="joao.geraldo">
+        <createTable tableName="PERMISSAO">
+            <column name="ID" type="INT" autoIncrement="true" remarks="Chave primária da tabela.">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+
+            <column name="NOME" type="VARCHAR(255)" remarks="Nome do tipo do grupo.">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DESCRICAO" type="VARCHAR(255)" remarks="Descrição do que é possível com essa permição.">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="202204160854-14" author="joao.geraldo">
+        <createTable tableName="GRUPO">
+            <column name="ID" type="INT" autoIncrement="true" remarks="Chave primária da tabela.">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+
+            <column name="ID_PERMISSAO" type="INT" remarks="Chave estrangeira da tabela PERMISSAO.">
+                <constraints nullable="false" foreignKeyName="PERMISSAO_GRUPO_FK" references="PERMISSAO(ID)"/>
+            </column>
+
+            <column name="NOME" type="VARCHAR(255)" remarks="Nome do tipo do grupo.">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="202204160854-13" author="joao.geraldo">
+        <createTable tableName="USUARIO">
+            <column name="ID" type="INT" autoIncrement="true" remarks="Chave primária da tabela.">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="ID_GRUPO" type="INT" remarks="Chave estrangeira da tabela GRUPO.">
+                <constraints nullable="false" foreignKeyName="GRUPO_USUARIO_FK" references="GRUPO(ID)"/>
+            </column>
+            <column name="NOME" type="VARCHAR(80)" remarks="">
+                <constraints nullable="false"/>
+            </column>
+            <column name="EMAIL" type="VARCHAR(80)" remarks="">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SENHA" type="VARCHAR(255)" remarks="">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DATA_CADASTRO" type="DATETIME" remarks="">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>
