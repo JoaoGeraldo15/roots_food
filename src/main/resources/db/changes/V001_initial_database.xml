@@ -8,18 +8,24 @@
 
     <changeSet id="202204160854-0" author="joao.geraldo">
         <createTable tableName="STATUS_ATIVO">
-            <column name="ID" type="INT" autoIncrement="true" remarks="Chave primária da tabela.">
+            <column name="ID" type="INT" remarks="Chave primária da tabela.">
                 <constraints nullable="false" primaryKey="true"/>
             </column>
             <column name="DESCRICAO" type="VARCHAR(255)" remarks="Descrição do status">
                 <constraints nullable="false"/>
             </column>
         </createTable>
+
+        <addAutoIncrement columnDataType="INT"
+                          columnName="ID"
+                          incrementBy="1"
+                          startWith="1"
+                          tableName="STATUS_ATIVO"/>
     </changeSet>
 
     <changeSet id="202204160854-1" author="joao.geraldo">
         <createTable tableName="STATUS_PEDIDO">
-            <column name="ID" type="INT" autoIncrement="true" remarks="Chave primária da tabela.">
+            <column name="ID" type="INT" remarks="Chave primária da tabela.">
                 <constraints nullable="false" primaryKey="true"/>
             </column>
 
@@ -27,11 +33,17 @@
                 <constraints nullable="false"/>
             </column>
         </createTable>
+
+        <addAutoIncrement columnDataType="INT"
+                          columnName="ID"
+                          incrementBy="1"
+                          startWith="1"
+                          tableName="STATUS_PEDIDO"/>
     </changeSet>
 
     <changeSet id="202204160854-2" author="joao.geraldo">
         <createTable tableName="COZINHA">
-            <column name="ID" type="INT" autoIncrement="true" remarks="Chave primária da tabela">
+            <column name="ID" type="INT" remarks="Chave primária da tabela">
                 <constraints nullable="false" primaryKey="true" />
             </column>
 
@@ -39,34 +51,52 @@
                 <constraints nullable="false"/>
             </column>
         </createTable>
+
+        <addAutoIncrement columnDataType="INT"
+                          columnName="ID"
+                          incrementBy="1"
+                          startWith="1"
+                          tableName="COZINHA"/>
     </changeSet>
 
     <changeSet id="202204160854-3" author="joao.geraldo">
         <createTable tableName="FORMA_PAGAMENTO">
-            <column name="ID" type="INT" autoIncrement="true" remarks="Chave primária da tabela.">
+            <column name="ID" type="INT" remarks="Chave primária da tabela.">
                 <constraints nullable="false" primaryKey="true"/>
             </column>
             <column name="descricao" type="VARCHAR(50)" remarks="Formas de pagamento que o restaurante aceita.">
                 <constraints nullable="false"/>
             </column>
         </createTable>
+
+        <addAutoIncrement columnDataType="INT"
+                          columnName="ID"
+                          incrementBy="1"
+                          startWith="1"
+                          tableName="FORMA_PAGAMENTO"/>
     </changeSet>
 
     <changeSet id="202204160854-4" author="joao.geraldo">
         <createTable tableName="ESTADO">
-            <column name="ID" type="INT" autoIncrement="true" remarks="Chave primária da tabela.">
+            <column name="ID" type="INT" remarks="Chave primária da tabela.">
                 <constraints nullable="false" primaryKey="true"/>
             </column>
             <column name="NOME" type="VARCHAR(255)" remarks="">
                 <constraints nullable="false"/>
             </column>
         </createTable>
+
+        <addAutoIncrement columnDataType="INT"
+                          columnName="ID"
+                          incrementBy="1"
+                          startWith="1"
+                          tableName="ESTADO"/>
     </changeSet>
 
     <changeSet id="202204160854-5" author="joao.geraldo">
 
         <createTable tableName="CIDADE">
-            <column name="ID" type="INT" autoIncrement="true" remarks="Chave primária da tabela.">
+            <column name="ID" type="INT" remarks="Chave primária da tabela.">
                 <constraints nullable="false" primaryKey="true"/>
             </column>
             <column name="NOME" type="VARCHAR(255)" remarks="">
@@ -76,11 +106,17 @@
                 <constraints nullable="false" foreignKeyName="ESTADO_CIDADE_FK" references="ESTADO(ID)"/>
             </column>
         </createTable>
+
+        <addAutoIncrement columnDataType="INT"
+                          columnName="ID"
+                          incrementBy="1"
+                          startWith="1"
+                          tableName="CIDADE"/>
     </changeSet>
 
     <changeSet id="202204160854-6" author="joao.geraldo">
         <createTable tableName="ENDERECO">
-            <column name="ID" type="INT" autoIncrement="true" remarks="Chave primária da tabela.">
+            <column name="ID" type="INT" remarks="Chave primária da tabela.">
                 <constraints nullable="false" primaryKey="true"/>
             </column>
 
@@ -103,11 +139,17 @@
                 <constraints nullable="false" foreignKeyName="CIDADE_ENDERECO_FK" references="CIDADE(ID)"/>
             </column>
         </createTable>
+
+        <addAutoIncrement columnDataType="INT"
+                          columnName="ID"
+                          incrementBy="1"
+                          startWith="1"
+                          tableName="ENDERECO"/>
     </changeSet>
 
     <changeSet id="202204160854-7" author="joao.geraldo">
         <createTable tableName="RESTAURANTE">
-            <column name="ID" type="INT" autoIncrement="true" remarks="Chave primária da tabela.">
+            <column name="ID" type="INT" remarks="Chave primária da tabela.">
                 <constraints nullable="false" primaryKey="true"/>
             </column>
             <column name="NOME" type="VARCHAR(128)" remarks="Nome do restaurante.">
@@ -133,12 +175,18 @@
                 <constraints nullable="false" foreignKeyName="FORMA_PAGAMENTO_RESTAURANTE_FK" references="FORMA_PAGAMENTO(ID)"/>
             </column>
         </createTable>
+
+        <addAutoIncrement columnDataType="INT"
+                          columnName="ID"
+                          incrementBy="1"
+                          startWith="1"
+                          tableName="RESTAURANTE"/>
     </changeSet>
 
     <!--  DOMINIO RELACIONADO AO PRODUTO  -->
     <changeSet id="202204160854-8" author="joao.geraldo">
         <createTable tableName="PRODUTO">
-            <column name="ID" type="INT" autoIncrement="true" remarks="Chave primária da tabela.">
+            <column name="ID" type="INT" remarks="Chave primária da tabela.">
                 <constraints nullable="false" primaryKey="true"/>
             </column>
             <column name="NOME" type="VARCHAR(120)" remarks="Nome do produto.">
@@ -154,6 +202,12 @@
                 <constraints nullable="false" foreignKeyName="STATUS_ATIVO_PRODUTO_FK" references="STATUS_ATIVO(ID)"/>
             </column>
         </createTable>
+
+        <addAutoIncrement columnDataType="INT"
+                          columnName="ID"
+                          incrementBy="1"
+                          startWith="1"
+                          tableName="PRODUTO"/>
     </changeSet>
 
     <changeSet id="202204160854-9" author="joao.geraldo">
@@ -177,11 +231,17 @@
                 <constraints nullable="false"/>
             </column>
         </createTable>
+
+        <addAutoIncrement columnDataType="INT"
+                          columnName="ID"
+                          incrementBy="1"
+                          startWith="1"
+                          tableName="FOTO_PRODUTO"/>
     </changeSet>
 
     <changeSet id="202204160854-10" author="joao.geraldo">
         <createTable tableName="PEDIDO">
-            <column name="ID" type="INT" autoIncrement="true" remarks="Chave primária da tabela.">
+            <column name="ID" type="INT" remarks="Chave primária da tabela.">
                 <constraints nullable="false" primaryKey="true"/>
             </column>
             <column name="SUBTOTAL" type="DECIMAL" remarks="">
@@ -203,11 +263,17 @@
                 <constraints nullable="false" foreignKeyName="FORMA_PAGAMENTO_PEDIDO_FK" references="FORMA_PAGAMENTO(ID)"/>
             </column>
         </createTable>
+
+        <addAutoIncrement columnDataType="INT"
+                          columnName="ID"
+                          incrementBy="1"
+                          startWith="1"
+                          tableName="PEDIDO"/>
     </changeSet>
 
     <changeSet id="202204160854-11" author="joao.geraldo">
         <createTable tableName="HISTORICO_PEDIDO">
-            <column name="ID" type="INT" autoIncrement="true" remarks="Chave primária da tabela.">
+            <column name="ID" type="INT" remarks="Chave primária da tabela.">
                 <constraints nullable="false" primaryKey="true"/>
             </column>
             <column name="ID_PEDIDO" type="INT" remarks="Chave estrangeira que representa a tabela PEDIDO">
@@ -220,11 +286,17 @@
                 <constraints nullable="false"/>
             </column>
         </createTable>
+
+        <addAutoIncrement columnDataType="INT"
+                          columnName="ID"
+                          incrementBy="1"
+                          startWith="1"
+                          tableName="HISTORICO_PEDIDO"/>
     </changeSet>
 
     <changeSet id="202204160854-12" author="joao.geraldo">
         <createTable tableName="ITEM_PEDIDO">
-            <column name="ID" type="int" autoIncrement="true" remarks="Chave primária da tabela.">
+            <column name="ID" type="int" remarks="Chave primária da tabela.">
                 <constraints nullable="false" primaryKey="true"/>
             </column>
             <column name="ID_PEDIDO" type="INT" remarks="Chave estrangeira da tabela PEDIDO.">
@@ -246,11 +318,17 @@
                 <constraints nullable="false"/>
             </column>
         </createTable>
+
+        <addAutoIncrement columnDataType="INT"
+                          columnName="ID"
+                          incrementBy="1"
+                          startWith="1"
+                          tableName="ITEM_PEDIDO"/>
     </changeSet>
 
     <changeSet id="202204160854-15" author="joao.geraldo">
         <createTable tableName="PERMISSAO">
-            <column name="ID" type="INT" autoIncrement="true" remarks="Chave primária da tabela.">
+            <column name="ID" type="INT" remarks="Chave primária da tabela.">
                 <constraints nullable="false" primaryKey="true"/>
             </column>
 
@@ -261,11 +339,17 @@
                 <constraints nullable="false"/>
             </column>
         </createTable>
+
+        <addAutoIncrement columnDataType="INT"
+                          columnName="ID"
+                          incrementBy="1"
+                          startWith="1"
+                          tableName="PERMISSAO"/>
     </changeSet>
 
     <changeSet id="202204160854-14" author="joao.geraldo">
         <createTable tableName="GRUPO">
-            <column name="ID" type="INT" autoIncrement="true" remarks="Chave primária da tabela.">
+            <column name="ID" type="INT" remarks="Chave primária da tabela.">
                 <constraints nullable="false" primaryKey="true"/>
             </column>
 
@@ -277,11 +361,17 @@
                 <constraints nullable="false"/>
             </column>
         </createTable>
+
+        <addAutoIncrement columnDataType="INT"
+                          columnName="ID"
+                          incrementBy="1"
+                          startWith="1"
+                          tableName="GRUPO"/>
     </changeSet>
 
     <changeSet id="202204160854-13" author="joao.geraldo">
         <createTable tableName="USUARIO">
-            <column name="ID" type="INT" autoIncrement="true" remarks="Chave primária da tabela.">
+            <column name="ID" type="INT" remarks="Chave primária da tabela.">
                 <constraints nullable="false" primaryKey="true"/>
             </column>
             <column name="ID_GRUPO" type="INT" remarks="Chave estrangeira da tabela GRUPO.">
@@ -300,6 +390,12 @@
                 <constraints nullable="false"/>
             </column>
         </createTable>
+
+        <addAutoIncrement columnDataType="INT"
+                          columnName="ID"
+                          incrementBy="1"
+                          startWith="1"
+                          tableName="USUARIO"/>
     </changeSet>
 
 </databaseChangeLog>
