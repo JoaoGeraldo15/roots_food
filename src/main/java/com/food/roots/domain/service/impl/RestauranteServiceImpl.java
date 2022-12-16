@@ -1,6 +1,7 @@
 package com.food.roots.domain.service.impl;
 
 import com.food.roots.domain.model.Restaurante;
+import com.food.roots.domain.model.dto.CozinhaDTO;
 import com.food.roots.domain.model.dto.RestauranteDTO;
 import com.food.roots.domain.model.dto.mapper.RestauranteMapper;
 import com.food.roots.domain.repository.RestauranteRepository;
@@ -25,7 +26,8 @@ public class RestauranteServiceImpl implements RestauranteService {
 
     @Override
     public RestauranteDTO cadastrar(RestauranteDTO restaurante) {
-        cozinhaService.buscarPorId(restaurante.getCozinha().getId());
+        CozinhaDTO cozinha = cozinhaService.buscarPorId(restaurante.getCozinha().getId());
+        restaurante.setCozinha(cozinha);
         return mapper.toDTO(restauranteRepository.save(mapper.toEntity(restaurante)));
     }
 
