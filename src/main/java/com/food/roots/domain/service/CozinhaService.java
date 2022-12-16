@@ -20,6 +20,8 @@ public interface CozinhaService {
      */
     public CozinhaDTO buscarPorId(Long id);
 
+    List<CozinhaDTO> cozinhasPorNome(String nome);
+
     /**
      * Atualiza os dados de uma cozinha de acordo com o id e informações passadas
      * @param id da cozinha a ser atualizada
