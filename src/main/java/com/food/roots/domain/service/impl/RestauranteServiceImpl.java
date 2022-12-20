@@ -7,12 +7,14 @@ import com.food.roots.domain.model.dto.mapper.RestauranteMapper;
 import com.food.roots.domain.repository.RestauranteRepository;
 import com.food.roots.domain.service.CozinhaService;
 import com.food.roots.domain.service.RestauranteService;
+import com.food.roots.domain.service.exception.BadRequestException;
 import com.food.roots.domain.service.exception.EntidadeNaoEncontradaException;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 @AllArgsConstructor
@@ -26,7 +28,11 @@ public class RestauranteServiceImpl implements RestauranteService {
 
     @Override
     public RestauranteDTO cadastrar(RestauranteDTO restaurante) {
-        CozinhaDTO cozinha = cozinhaService.buscarPorId(restaurante.getCozinha().getId());
+        Long cozinhaId = restaurante.getCozinha().getId();
+        CozinhaDTO cozinha = cozinhaService.buscarPorId(cozinhaId);
+        if (Objects.isNull(cozinha)) {
+            throw new BadRequestException(String.format("Cozinha de id: %d não existe!", cozinhaId));
+        }
         restaurante.setCozinha(cozinha);
         return mapper.toDTO(restauranteRepository.save(mapper.toEntity(restaurante)));
     }
