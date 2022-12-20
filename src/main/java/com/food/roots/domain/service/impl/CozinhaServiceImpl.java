@@ -34,7 +34,7 @@ public class CozinhaServiceImpl implements CozinhaService {
 
     @Override
     public List<CozinhaDTO> cozinhasPorNome(String nome) {
-        return mapper.listToDTO(cozinhaRepository.nome(nome));
+        return mapper.listToDTO(cozinhaRepository.findByNomeContaining(nome));
     }
 
     @Override
