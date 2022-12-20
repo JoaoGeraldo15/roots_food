@@ -7,8 +7,6 @@ import com.food.roots.domain.repository.CozinhaRepository;
 import com.food.roots.domain.service.CozinhaService;
 import com.food.roots.domain.service.exception.EntidadeEmUsoException;
 import com.food.roots.domain.service.exception.EntidadeNaoEncontradaException;
-import org.springframework.dao.EmptyResultDataAccessException;
-
 import lombok.AllArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -56,10 +54,6 @@ public class CozinhaServiceImpl implements CozinhaService {
         Cozinha cozinha = obterCozinhaOuLancarError(id);
         try {
             cozinhaRepository.delete(cozinha);
-       } catch (EmptyResultDataAccessException e) {
-        throw new EntidadeNaoEncontradaException(
-                String.format("Não existe um cadastro de cozinha com código %d", id));
-
         } catch (DataIntegrityViolationException e) {
             throw new EntidadeEmUsoException(
                     String.format("Cozinha de código %d não pode ser removida, pois está em uso", id));
