@@ -1,5 +1,6 @@
 package com.food.roots.domain.resource.exception;
 
+import com.food.roots.domain.service.exception.BadRequestException;
 import com.food.roots.domain.service.exception.EntidadeEmUsoException;
 import com.food.roots.domain.service.exception.EntidadeNaoEncontradaException;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -30,5 +31,11 @@ public class ResourceExceptionHandler {
     public ResponseEntity<StandardError> entidadeNaoEncontrada(EntidadeNaoEncontradaException ex, HttpServletRequest request) {
         StandardError error = new StandardError(LocalDateTime.now(), HttpStatus.NOT_FOUND.value(), ex.getMessage(), request.getRequestURI());
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
+    }
+
+    @ExceptionHandler(BadRequestException.class)
+    public ResponseEntity<StandardError> badRequestHandler(BadRequestException ex, HttpServletRequest request) {
+        StandardError error = new StandardError(LocalDateTime.now(), HttpStatus.BAD_REQUEST.value(), ex.getMessage(), request.getRequestURI());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
     }
 }
