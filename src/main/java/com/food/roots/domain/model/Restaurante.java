@@ -3,6 +3,8 @@ package com.food.roots.domain.model;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,10 +12,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter @Setter
@@ -37,13 +44,23 @@ public class Restaurante {
     @Column(name = "ABERTO")
     private Boolean aberto;
 
+    @CreationTimestamp
     @Column(name = "DATA_REGISTRO")
     private LocalDateTime dataCadastro;
 
+    @UpdateTimestamp
     @Column(name = "DATA_ATUALIZACAO")
     private LocalDateTime dataAtualizacao;
 
     @ManyToOne
     @JoinColumn(name = "ID_COZINHA", nullable = false)
     private Cozinha cozinha;
+
+    @ManyToMany
+    @JoinTable(name = "RESTAURANTE_FORMA_PAGAMENTO", joinColumns = @JoinColumn(name = "ID_RESTAURANTE"), inverseJoinColumns = @JoinColumn(name = "ID_FORMA_PAGAMENTO"))
+    private List<FormaPagamento> formasPagamento = new ArrayList<>();
+
+    @OneToMany(mappedBy = "restaurante")
+    private List<Produto> produtos = new ArrayList<>();
+
 }
