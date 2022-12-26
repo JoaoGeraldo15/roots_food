@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.2.xsd
+      http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.2.xsd">
+
+    <changeSet id="231220221750-0" author="joao.geraldo">
+        <dropForeignKeyConstraint baseTableName="PRODUTO" constraintName="STATUS_ATIVO_PRODUTO_FK"/>
+    </changeSet>
+
+    <changeSet id="231220221751-1" author="joao.geraldo">
+        <dropForeignKeyConstraint baseTableName="RESTAURANTE" constraintName="STATUS_RESTAURANTE_FK"/>
+    </changeSet>
+
+    <changeSet id="231220221754-2" author="joao.geraldo">
+        <dropTable tableName="STATUS_ATIVO"/>
+    </changeSet>
+
+    <changeSet id="251220221047-3" author="joao.geraldo">
+        <renameColumn tableName="PRODUTO" columnDataType="INT" oldColumnName="ID_STATUS_ATIVO" newColumnName="ATIVO"/>
+    </changeSet>
+
+    <changeSet id="231220221047-4" author="joao.geraldo">
+        <renameColumn tableName="RESTAURANTE" columnDataType="INT" oldColumnName="ID_STATUS_ATIVO" newColumnName="ATIVO"/>
+    </changeSet>
+
+</databaseChangeLog>

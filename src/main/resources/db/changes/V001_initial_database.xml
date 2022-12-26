@@ -47,7 +47,7 @@
                 <constraints nullable="false" primaryKey="true" />
             </column>
 
-            <column name="nome" type="VARCHAR(35)" remarks="Nome do pais no qual a cozinha representa (comida brasileira, italiana, etc...)">
+            <column name="NOME" type="VARCHAR(35)" remarks="Nome do pais no qual a cozinha representa (comida brasileira, italiana, etc...)">
                 <constraints nullable="false"/>
             </column>
         </createTable>

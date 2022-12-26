@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.2.xsd
+      http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.2.xsd">
+
+    <changeSet id="221220221730-0" author="joao.geraldo">
+        <createTable tableName="RESTAURANTE_FORMA_PAGAMENTO">
+            <column name="ID_RESTAURANTE" type="INT" remarks="Chave primária da tabela RESTAURANTE">
+                <constraints nullable="false" foreignKeyName="ID_RESTAURANTE_RFP_FK" references="RESTAURANTE(ID)"/>
+            </column>
+            <column name="ID_FORMA_PAGAMENTO" type="INT" remarks="Chave primária da tabela FORMA_PAGAMENTO">
+                <constraints nullable="false" foreignKeyName="ID_FORMA_PAGAMENTO_RFP_FK" references="FORMA_PAGAMENTO(ID)"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="221220221749-1" author="joao.geraldo">
+        <dropForeignKeyConstraint baseTableName="RESTAURANTE" constraintName="FORMA_PAGAMENTO_RESTAURANTE_FK"/>
+    </changeSet>
+
+    <changeSet id="221220221802-2" author="joao.geraldo">
+        <dropColumn tableName="RESTAURANTE" columnName="ID_FORMA_PAGAMENTO"/>
+    </changeSet>
+
+
+</databaseChangeLog>

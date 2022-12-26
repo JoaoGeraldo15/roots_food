@@ -7,4 +7,8 @@
         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
     <include file="/db/changes/V001_initial_database.xml" />
     <include file="/db/changes/V002_add_column_restaurante.xml" />
+    <include file="/db/changes/V003_create_table_restaurante_pagamento.xml" />
+    <include file="/db/changes/V004_create_table_usuario_grupo.xml" />
+    <include file="/db/changes/V005_create_table_grupo_permissao.xml" />
+    <include file="/db/changes/V006_drop_table_status_ativo.xml" />
 </databaseChangeLog>

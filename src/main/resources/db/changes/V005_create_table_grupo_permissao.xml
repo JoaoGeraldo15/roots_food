@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.2.xsd
+      http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.2.xsd">
+
+    <changeSet id="231220221652-0" author="joao.geraldo">
+        <createTable tableName="GRUPO_PERMISSAO">
+            <column name="ID_GRUPO" type="INT" remarks="Chave estrangeira da tabela GRUPO">
+                <constraints nullable="false" foreignKeyName="ID_GRUPO_GP_FK" references="GRUPO(ID)"/>
+            </column>
+            <column name="ID_PERMISSAO" type="INT" remarks="Chave estrangeira da tabela PERMISSAO">
+                <constraints nullable="false" foreignKeyName="ID_PERMISSAO_GP_FK" references="PERMISSAO(ID)"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="231220221653-1" author="joao.geraldo">
+        <dropForeignKeyConstraint baseTableName="GRUPO" constraintName="PERMISSAO_GRUPO_FK"/>
+    </changeSet>
+
+    <changeSet id="231220221654-2" author="joao.geraldo">
+        <dropColumn tableName="GRUPO" columnName="ID_PERMISSAO"/>
+    </changeSet>
+
+
+</databaseChangeLog>

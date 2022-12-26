@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.2.xsd
+      http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.2.xsd">
+
+    <changeSet id="231220221644-0" author="joao.geraldo">
+        <dropForeignKeyConstraint baseTableName="USUARIO" constraintName="GRUPO_USUARIO_FK"/>
+    </changeSet>
+
+    <changeSet id="231220221644-1" author="joao.geraldo">
+        <dropColumn tableName="USUARIO" columnName="ID_GRUPO"/>
+    </changeSet>
+
+    <changeSet id="231220221643-2" author="joao.geraldo">
+        <createTable tableName="USUARIO_GRUPO">
+            <column name="ID_USUARIO" type="INT" remarks="Chave estrangeira da tabela USUARIO">
+                <constraints nullable="false" foreignKeyName="ID_USUARIO_UG_FK" references="USUARIO(ID)"/>
+            </column>
+            <column name="ID_GRUPO" type="INT" remarks="Chave estrangeira da tabela GRUPO">
+                <constraints nullable="false" foreignKeyName="ID_GRUPO_UG_FK" references="GRUPO(ID)"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+
+</databaseChangeLog>
