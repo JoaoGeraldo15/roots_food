@@ -108,11 +108,10 @@
 							<artifactId>lombok-mapstruct-binding</artifactId>
 							<version>0.1.0</version>
 						</path>
-
-
 					</annotationProcessorPaths>
 				</configuration>
 			</plugin>
+
 		</plugins>
 	</build>
 </project>

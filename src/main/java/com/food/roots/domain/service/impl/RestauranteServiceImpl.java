@@ -1,6 +1,6 @@
 package com.food.roots.domain.service.impl;
 
-import com.food.roots.domain.model.Restaurante;
+import com.food.roots.domain.model.entity.Restaurante;
 import com.food.roots.domain.model.dto.CozinhaDTO;
 import com.food.roots.domain.model.dto.RestauranteDTO;
 import com.food.roots.domain.model.dto.mapper.RestauranteMapper;
@@ -50,7 +50,7 @@ public class RestauranteServiceImpl implements RestauranteService {
     @Override
     public RestauranteDTO atualizar(Long id, RestauranteDTO restaurante) {
         Restaurante restauranteAtual = obterRestauranteOuLancarError(id);
-        BeanUtils.copyProperties(restaurante, restauranteAtual, "id");
+        BeanUtils.copyProperties(restaurante, restauranteAtual, "id", "formasPagamento");
         return mapper.toDTO(restauranteRepository.save(restauranteAtual));
     }
 

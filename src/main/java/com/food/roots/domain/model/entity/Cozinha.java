@@ -1,4 +1,4 @@
-package com.food.roots.domain.model;
+package com.food.roots.domain.model.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;

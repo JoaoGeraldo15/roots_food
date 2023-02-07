@@ -1,17 +1,15 @@
-package com.food.roots.domain.model;
+package com.food.roots.domain.model.entity;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Getter @Setter
 @EqualsAndHashCode(of = {"id"})
+@Table(name = "ESTADO")
 public class Estado {
 
     @Id

@@ -1,6 +1,6 @@
 package com.food.roots.domain.repository;
 
-import com.food.roots.domain.model.Cozinha;
+import com.food.roots.domain.model.entity.Cozinha;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

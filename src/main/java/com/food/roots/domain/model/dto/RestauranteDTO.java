@@ -1,6 +1,5 @@
 package com.food.roots.domain.model.dto;
 
-import com.food.roots.domain.model.Cozinha;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

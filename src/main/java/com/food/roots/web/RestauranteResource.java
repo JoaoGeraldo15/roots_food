@@ -1,4 +1,4 @@
-package com.food.roots.domain.resource;
+package com.food.roots.web;
 
 import com.food.roots.domain.model.dto.RestauranteDTO;
 import com.food.roots.domain.service.RestauranteService;

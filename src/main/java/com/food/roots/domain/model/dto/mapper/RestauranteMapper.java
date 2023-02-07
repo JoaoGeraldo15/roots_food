@@ -1,6 +1,6 @@
 package com.food.roots.domain.model.dto.mapper;
 
-import com.food.roots.domain.model.Restaurante;
+import com.food.roots.domain.model.entity.Restaurante;
 import com.food.roots.domain.model.dto.RestauranteDTO;
 import org.mapstruct.Mapper;
 

@@ -1,4 +1,4 @@
-package com.food.roots.domain.model;
+package com.food.roots.domain.model.entity;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -6,17 +6,7 @@ import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -33,6 +23,7 @@ public class Restaurante {
     @EqualsAndHashCode.Include
     private Long id;
 
+    @Column(name = "NOME")
     private String nome;
 
     @Column(name = "TAXA_ENTREGA")
@@ -52,7 +43,11 @@ public class Restaurante {
     @Column(name = "DATA_ATUALIZACAO")
     private LocalDateTime dataAtualizacao;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_ENDERECO", nullable = false)
+    private Endereco endereco;
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_COZINHA", nullable = false)
     private Cozinha cozinha;
 

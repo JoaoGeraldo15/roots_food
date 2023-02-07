@@ -1,8 +1,7 @@
-package com.food.roots.domain.resource;
+package com.food.roots.web;
 
 import com.food.roots.domain.model.dto.CozinhaDTO;
 import com.food.roots.domain.service.CozinhaService;
-import com.food.roots.domain.service.exception.EntidadeNaoEncontradaException;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -45,7 +44,7 @@ public class CozinhaResource {
         return ResponseEntity.ok().body(cozinhaAtualizada);
     }
 
-    @GetMapping()
+    @GetMapping
     public ResponseEntity<List<CozinhaDTO>> listar() {
         return ResponseEntity.ok().body(cozinhaService.listar());
     }

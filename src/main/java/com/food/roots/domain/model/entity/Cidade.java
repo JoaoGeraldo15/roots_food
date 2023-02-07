@@ -1,14 +1,10 @@
-package com.food.roots.domain.model;
+package com.food.roots.domain.model.entity;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Entity
 @Getter @Setter
@@ -21,6 +17,7 @@ public class Cidade {
 
     private String nome;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_ESTADO", nullable = false)
     private Estado estado;
 }

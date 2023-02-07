@@ -1,4 +1,4 @@
-package com.food.roots.domain.resource.exception;
+package com.food.roots.web.exception;
 
 import com.food.roots.domain.service.exception.BadRequestException;
 import com.food.roots.domain.service.exception.EntidadeEmUsoException;

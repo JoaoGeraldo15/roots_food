@@ -1,6 +1,6 @@
 package com.food.roots.infrastructure.repository;
 
-import com.food.roots.domain.model.Cozinha;
+import com.food.roots.domain.model.entity.Cozinha;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 

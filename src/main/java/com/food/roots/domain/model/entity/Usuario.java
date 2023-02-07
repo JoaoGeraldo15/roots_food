@@ -1,6 +1,5 @@
-package com.food.roots.domain;
+package com.food.roots.domain.model.entity;
 
-import com.food.roots.domain.model.Grupo;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;

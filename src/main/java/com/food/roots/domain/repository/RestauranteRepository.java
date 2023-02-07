@@ -1,6 +1,6 @@
 package com.food.roots.domain.repository;
 
-import com.food.roots.domain.model.Restaurante;
+import com.food.roots.domain.model.entity.Restaurante;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

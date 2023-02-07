@@ -1,4 +1,4 @@
-package com.food.roots.domain.resource.exception;
+package com.food.roots.web.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

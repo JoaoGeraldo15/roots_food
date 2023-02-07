@@ -1,6 +1,6 @@
 package com.food.roots.domain.service.impl;
 
-import com.food.roots.domain.model.Cozinha;
+import com.food.roots.domain.model.entity.Cozinha;
 import com.food.roots.domain.model.dto.CozinhaDTO;
 import com.food.roots.domain.model.dto.mapper.CozinhaMapper;
 import com.food.roots.domain.repository.CozinhaRepository;
