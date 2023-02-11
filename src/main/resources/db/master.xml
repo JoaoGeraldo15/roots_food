@@ -10,6 +10,13 @@
     <include file="/db/changes/V003_create_table_restaurante_pagamento.xml" />
     <include file="/db/changes/V004_create_table_usuario_grupo.xml" />
     <include file="/db/changes/V005_create_table_grupo_permissao.xml" />
-    <include file="/db/changes/V006_drop_table_status_ativo.xml" />
-    <include file="/db/changes/V007_add_foreign_key_on_produto.xml" />
+    <include file="/db/changes/V006_add_foreign_key_on_produto.xml" />
+
+    <include file="/db/insert/V001_insert_into_cozinha.sql"/>
+    <include file="/db/insert/V002_insert_into_status_ativo.sql"/>
+    <include file="/db/insert/V003_insert_into_estado.sql"/>
+    <include file="/db/insert/V004_insert_into_cidade.sql"/>
+    <include file="/db/insert/V005_insert_into_endereco.sql"/>
+    <include file="/db/insert/V006_insert_into_restaurante.sql"/>
+    <include file="/db/insert/V007_insert_into_forma_pagamento.sql"/>
 </databaseChangeLog>
