@@ -29,12 +29,19 @@ public class RestauranteServiceImpl implements RestauranteService {
     @Override
     public RestauranteDTO cadastrar(RestauranteDTO restaurante) {
         Long cozinhaId = restaurante.getCozinha().getId();
-        CozinhaDTO cozinha = cozinhaService.buscarPorId(cozinhaId);
-        if (Objects.isNull(cozinha)) {
-            throw new BadRequestException(String.format("Cozinha de id: %d não existe!", cozinhaId));
-        }
+        CozinhaDTO cozinha = obterCozinhaOuLancarError(cozinhaId);
         restaurante.setCozinha(cozinha);
         return mapper.toDTO(restauranteRepository.save(mapper.toEntity(restaurante)));
+    }
+
+    private CozinhaDTO obterCozinhaOuLancarError(Long cozinhaId) {
+        CozinhaDTO cozinha;
+        try {
+            cozinha = cozinhaService.buscarPorId(cozinhaId);
+        } catch (EntidadeNaoEncontradaException e) {
+            throw new BadRequestException("A cozinha informada não existe!");
+        }
+        return cozinha;
     }
 
     @Override
@@ -50,6 +57,9 @@ public class RestauranteServiceImpl implements RestauranteService {
     @Override
     public RestauranteDTO atualizar(Long id, RestauranteDTO restaurante) {
         Restaurante restauranteAtual = obterRestauranteOuLancarError(id);
+        if(Objects.nonNull(restaurante.getCozinha())) {
+            restaurante.setCozinha(obterCozinhaOuLancarError(restaurante.getCozinha().getId()));
+        }
         BeanUtils.copyProperties(restaurante, restauranteAtual, "id", "formasPagamento");
         return mapper.toDTO(restauranteRepository.save(restauranteAtual));
     }

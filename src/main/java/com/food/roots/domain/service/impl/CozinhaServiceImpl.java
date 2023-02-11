@@ -62,6 +62,7 @@ public class CozinhaServiceImpl implements CozinhaService {
     }
 
     private Cozinha obterCozinhaOuLancarError(Long id) {
-        return cozinhaRepository.findById(id).orElseThrow(() -> new EntidadeNaoEncontradaException(String.format("Cozinha de id: %d não encontrada", id)));
+        return cozinhaRepository.findById(id)
+                .orElseThrow(() -> new EntidadeNaoEncontradaException(String.format("Cozinha de id: %d não encontrada", id)));
     }
 }
