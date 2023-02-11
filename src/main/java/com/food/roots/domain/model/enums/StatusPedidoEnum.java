@@ -20,8 +20,8 @@ public enum StatusPedidoEnum {
     public static HashMap<Long, String> CACHE = new HashMap<>();
 
     static {
-        for (StatusPedidoEnum formaPagamentoEnum: StatusPedidoEnum.values()) {
-            CACHE.put(formaPagamentoEnum.getId(), formaPagamentoEnum.getDescricao());
+        for (StatusPedidoEnum statusPedidoEnum: StatusPedidoEnum.values()) {
+            CACHE.put(statusPedidoEnum.getId(), statusPedidoEnum.getDescricao());
         }
     }
 
