@@ -8,7 +8,7 @@
 
     <changeSet id="202204160854-0" author="joao.geraldo">
         <addColumn tableName="RESTAURANTE">
-            <column name="ABERTO" type="INT" remarks="Boolean para informar se o restaurante está aberto." afterColumn="ID_STATUS_ATIVO"/>
+            <column name="ABERTO" type="BIT" remarks="Boolean para informar se o restaurante está aberto." afterColumn="ID_STATUS_ATIVO"/>
         </addColumn>
     </changeSet>
 
