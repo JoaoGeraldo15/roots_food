@@ -1,14 +1,15 @@
 package com.food.roots.domain.service.impl;
 
-import com.food.roots.domain.model.entity.Restaurante;
 import com.food.roots.domain.model.dto.CozinhaDTO;
 import com.food.roots.domain.model.dto.RestauranteDTO;
 import com.food.roots.domain.model.dto.mapper.RestauranteMapper;
+import com.food.roots.domain.model.entity.Restaurante;
 import com.food.roots.domain.repository.RestauranteRepository;
 import com.food.roots.domain.service.CozinhaService;
 import com.food.roots.domain.service.RestauranteService;
 import com.food.roots.domain.service.exception.BadRequestException;
-import com.food.roots.domain.service.exception.EntidadeNaoEncontradaException;
+import com.food.roots.domain.service.exception.EntidadeCozinhaNaoEncontradaException;
+import com.food.roots.domain.service.exception.EntidadeRestauranteNaoEncontradaException;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
@@ -38,7 +39,7 @@ public class RestauranteServiceImpl implements RestauranteService {
         CozinhaDTO cozinha;
         try {
             cozinha = cozinhaService.buscarPorId(cozinhaId);
-        } catch (EntidadeNaoEncontradaException e) {
+        } catch (EntidadeCozinhaNaoEncontradaException e) {
             throw new BadRequestException("A cozinha informada não existe!");
         }
         return cozinha;
@@ -77,6 +78,6 @@ public class RestauranteServiceImpl implements RestauranteService {
 
     private Restaurante obterRestauranteOuLancarError(Long id) {
         return restauranteRepository.findById(id)
-                .orElseThrow(() -> new EntidadeNaoEncontradaException(String.format("Restaurante de id %d não foi encontrado", id)));
+                .orElseThrow(() -> new EntidadeRestauranteNaoEncontradaException(String.format("Restaurante de id %d não foi encontrado", id)));
     }
 }

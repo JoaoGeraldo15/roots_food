@@ -1,12 +1,12 @@
 package com.food.roots.domain.service.impl;
 
-import com.food.roots.domain.model.entity.Cozinha;
 import com.food.roots.domain.model.dto.CozinhaDTO;
 import com.food.roots.domain.model.dto.mapper.CozinhaMapper;
+import com.food.roots.domain.model.entity.Cozinha;
 import com.food.roots.domain.repository.CozinhaRepository;
 import com.food.roots.domain.service.CozinhaService;
+import com.food.roots.domain.service.exception.EntidadeCozinhaNaoEncontradaException;
 import com.food.roots.domain.service.exception.EntidadeEmUsoException;
-import com.food.roots.domain.service.exception.EntidadeNaoEncontradaException;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -63,6 +63,6 @@ public class CozinhaServiceImpl implements CozinhaService {
 
     private Cozinha obterCozinhaOuLancarError(Long id) {
         return cozinhaRepository.findById(id)
-                .orElseThrow(() -> new EntidadeNaoEncontradaException(String.format("Cozinha de id: %d não encontrada", id)));
+                .orElseThrow(() -> new EntidadeCozinhaNaoEncontradaException(String.format("Cozinha de id: %d não encontrada", id)));
     }
 }
